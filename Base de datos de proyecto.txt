@@ -1,0 +1,38 @@
+-- Crear la base de datos
+CREATE DATABASE Refaccionaria_La_Minita;
+
+-- Usar la base de datos
+USE Refaccionaria_La_Minita;
+
+-- Crear la tabla Productos
+CREATE TABLE Productos (
+    Id_producto INT PRIMARY KEY,
+    Nombre_refaccion VARCHAR(255),
+    Marca VARCHAR(255),
+    Codigo VARCHAR(255),
+    Precio DECIMAL(10, 2)
+);
+
+-- Crear la tabla Venta
+CREATE TABLE Venta (
+    id_venta INT PRIMARY KEY,
+    fecha_venta DATE,
+    total_venta DECIMAL(10, 2)
+);
+
+-- Crear la tabla Detalles_Venta
+CREATE TABLE Detalles_Venta (
+    id_detalle INT PRIMARY KEY,
+    id_venta INT,
+    id_producto INT,
+    cantidad INT,
+    precio_unico DECIMAL(10, 2),
+    FOREIGN KEY (id_venta) REFERENCES Venta(id_venta),
+    FOREIGN KEY (id_producto) REFERENCES Productos(Id_producto)
+);
+
+-- Crear la tabla Inventario
+CREATE TABLE Inventario (
+    Id_producto INT PRIMARY KEY,
+    cantidad INT
+);
